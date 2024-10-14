@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MODAL_TYPE } from '@constants';
 import ClientNameInput from '@modules/sendMessage/ClientNameInput';
 import ClientEmailInput from '@modules/sendMessage/ClientEmailInput';
+import MessageInput from '@modules/sendMessage/MessageInput';
 import { Button, Form, message, Modal, Space } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import { tgBotApi } from '@api/tgBot';
@@ -15,14 +16,21 @@ function SendMessageModal({ name, isOpen, onOk, onCancel }) {
 
     const name = form.getFieldValue('client_name');
     const email = form.getFieldValue('client_email');
-    const text = `Имя: ${name}\nEmail: ${email}`;
+    const mess = form.getFieldValue('message');
+    const text = `Имя: ${name}\nEmail: ${email}\nСообщение: ${mess}`;
 
     const params = {
-      chat_id: '',
+      chat_id: CHAT_ID,
       text: text,
     };
-
-    tgBotApi.sendMessage(params);
+    try {
+      await tgBotApi.sendMessage(params);
+      message.success('Заявка успешно отправлена');
+    } catch {
+      message.error('Невозможно отправить заявку');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onFinishFailed = () => {
@@ -47,6 +55,7 @@ function SendMessageModal({ name, isOpen, onOk, onCancel }) {
       >
         <ClientNameInput name="client_name" />
         <ClientEmailInput name="client_email" />
+        <MessageInput name="message" />
         <Space>
           <FormItem>
             <Button type="primary" htmlType="submit" loading={isLoading}>

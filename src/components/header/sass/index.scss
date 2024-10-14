@@ -1,20 +1,10 @@
 .header {
   background: #131313;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &__title {
-    color: aliceblue;
-    margin: 0;
-    font-size: 18px;
-  }
-
-  .ant-menu {
-    background: #131313;
-
-    .ant-menu-item-selected {
-      background-color: #131313;
-    }
-    .ant-menu-overflow-item:hover {
-      background-color: #131313;
-    }
+    font-size: 24px;
   }
 }

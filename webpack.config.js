@@ -17,6 +17,7 @@ module.exports = (env) => {
       static: './dist',
       port: 9000,
       open: true,
+      hot: true,
       historyApiFallback: true,
     },
     module: {
@@ -45,7 +46,10 @@ module.exports = (env) => {
       new HtmlWebpackPlugin({
         template: './src/index.html',
       }),
-      new webpack.DefinePlugin({}),
+      new webpack.DefinePlugin({
+        CHAT_ID: JSON.stringify(process.env.CHAT_ID),
+        BOT_TOKEN: JSON.stringify(process.env.BOT_TOKEN),
+      }),
     ],
     resolve: {
       alias: {

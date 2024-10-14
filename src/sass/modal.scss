@@ -1,0 +1,36 @@
+.ant-modal-content {
+  background: #1a1a1a !important;
+}
+
+.ant-modal-header {
+  background: #1a1a1a !important;
+}
+
+.ant-modal-title {
+  color: #efefef !important;
+}
+
+.ant-input::placeholder {
+  color: #efefef;
+}
+
+.ant-input-prefix {
+  color: #efefef;
+}
+
+.ant-input-filled {
+  &:focus-within,
+  &:focus {
+    background-color: #131313;
+    border-color: #a5ec60;
+    color: #efefef;
+    box-shadow: none;
+  }
+  &.ant-input-status-error {
+    background-color: #131313 !important;
+  }
+}
+
+.ant-input-affix-wrapper {
+  color: #efefef;
+}
